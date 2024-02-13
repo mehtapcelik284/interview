@@ -36,6 +36,7 @@ export class CreateAccountFormComponent {
     this.loading = false;
 
     if (result.isOk) {
+      notify(result.message, 'success', 2000);
       this.router.navigate(['/login-form']);
     } else {
       notify(result.message, 'error', 2000);
