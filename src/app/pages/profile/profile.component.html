@@ -2,15 +2,15 @@
 
 <div class="content-block">
   <div class="form-avatar">
-    <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{user.picture}}" alt="Profile Picture" />
+    <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{employee.picture}}" alt="Profile Picture" />
   </div>
   <div class="profile-details">
-    <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
-    <div>Position: {{ user.position }}</div>
-    <div>Assigned Tickets: {{ user.assignedTasks }}</div>
+    <div class="user-name">{{ employee.firstName }} {{ employee.lastName }}</div>
+    <div>Position: {{ employee.position }}</div>
+    <div>Assigned Tickets: {{ employee.assignedTasks }}</div>
   </div>
   <div class="dx-card responsive-paddings">
-    <dx-form id="form" [formData]="user" labelLocation="top" [colCountByScreen]="colCountByScreen">
+    <dx-form id="form" [formData]="employee" labelLocation="top" [colCountByScreen]="colCountByScreen">
     </dx-form>
   </div>
 </div>

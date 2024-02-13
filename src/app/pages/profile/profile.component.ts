@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { User } from './model/user';
+import { Employee } from './model/user';
 
 @Component({
   templateUrl: 'profile.component.html',
-  styleUrls: [ './profile.component.scss' ]
+  styleUrls: ['./profile.component.scss']
 })
 
 export class ProfileComponent {
-  user: User;
+  employee: Employee;
   colCountByScreen: object;
 
   constructor() {
-    this.user = {
+    this.employee = {
       id: 7,
       firstName: 'Sandra',
       lastName: 'Johnson',
       prefix: 'Mrs.',
       position: 'Controller',
-      picture: 'images/users/06.png',
+      picture: 'images/employees/06.png',
       birthDate: new Date('1974/11/5'),
       hireDate: new Date('2005/05/11'),
       assignedTasks: 33,

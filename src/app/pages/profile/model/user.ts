@@ -1,4 +1,4 @@
-export interface User {
+export interface Employee {
   readonly id: number;
   readonly firstName: string;
   readonly lastName: string;
