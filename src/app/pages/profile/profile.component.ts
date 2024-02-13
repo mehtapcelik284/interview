@@ -15,6 +15,7 @@ export class ProfileComponent {
       id: 7,
       firstName: 'Sandra',
       lastName: 'Johnson',
+      phoneNumber: '+49 151 240 123 87',
       prefix: 'Mrs.',
       position: 'Controller',
       picture: 'images/employees/06.png',
@@ -22,9 +23,7 @@ export class ProfileComponent {
       hireDate: new Date('2005/05/11'),
       assignedTasks: 33,
       notes: 'Sandra is a CPA and has been our controller since 2008. She loves to interact with staff so if you`ve not met her, be certain to say hi.\r\n\r\nSandra has 2 daughters both of whom are accomplished gymnasts.',
-      address: '4600 N Virginia Rd.',
-      phoneNumber: '+49 151 240 123 87',
-      email: 'sandra@example.com'
+      address: '4600 N Virginia Rd.'
     };
     this.colCountByScreen = {
       xs: 1,
