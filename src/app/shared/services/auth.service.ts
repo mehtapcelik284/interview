@@ -64,9 +64,6 @@ export class AuthService {
 
   async createAccount(formData: UserRegistrationModel) {
     try {
-      // Send request
-      console.log(formData);
-
       this.router.navigate(['/create-account']);
       return {
         isOk: true,
