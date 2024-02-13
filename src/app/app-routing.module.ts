@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginFormComponent, ResetPasswordFormComponent, ChangePasswordFormComponent } from './shared/components';
+import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
 import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -10,14 +10,12 @@ import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 const routes: Routes = [
   {
     path: 'tasks',
-    loadComponent: () =>
-      import('./pages/tasks/tasks.component').then((m) => m.TasksComponent),
+    component: TasksComponent,
     canActivate: [AuthGuardService]
   },
   {
     path: 'profile',
-    loadComponent: () =>
-      import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+    component: ProfileComponent,
     canActivate: [AuthGuardService]
   },
   {
@@ -37,8 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'create-account',
-    loadComponent: () =>
-      import('./shared/components').then((m) => m.CreateAccountFormComponent),
+    component: CreateAccountFormComponent,
     canActivate: [AuthGuardService]
   },
   {
