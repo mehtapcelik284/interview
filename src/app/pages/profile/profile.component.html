@@ -1,32 +1,16 @@
 <h2 class="content-block">Profile</h2>
 
-<div class="content-block dx-card responsive-paddings">
-  <div style="display: flex; justify-content: space-around;">
-    <div class="form-avatar">
-      <img
-        src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{
-          employee.Picture
-        }}"
-      />
-    </div>
-      <div class="profile-border responsive-paddings">
-        <div>Tickets assigned to me:</div>
-        {{ this.employee.AssignedTasks }}
-      </div>
-
-      <div class="profile-border responsive-paddings">
-        <div>Position:</div>
-        {{ this.employee.Position }}
-      </div>
+<div class="content-block">
+  <div class="form-avatar">
+    <img src="https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/{{user.picture}}" alt="Profile Picture" />
   </div>
-</div>
-
-<div class="content-block dx-card responsive-paddings">
-  <dx-form
-    id="form"
-    [formData]="employee"
-    labelLocation="top"
-    [colCountByScreen]="colCountByScreen"
-  >
-  </dx-form>
+  <div class="profile-details">
+    <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
+    <div>Position: {{ user.position }}</div>
+    <div>Assigned Tickets: {{ user.assignedTasks }}</div>
+  </div>
+  <div class="dx-card responsive-paddings">
+    <dx-form id="form" [formData]="user" labelLocation="top" [colCountByScreen]="colCountByScreen">
+    </dx-form>
+  </div>
 </div>

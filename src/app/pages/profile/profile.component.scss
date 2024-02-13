@@ -1,25 +1,23 @@
+.form-avatar img {
+  border-radius: 50%;
+  max-width: 150px;
+  margin: 0 auto;
+  display: block;
+}
+
+.profile-details {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
 .profile-border {
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin-top: 10px;
+  border-radius: 8px;
 }
 
-.form-avatar {
-  @extend .profile-border;
-  width: 100%;
-  float: right;
-  height: 120px;
-  width: 120px;
-  margin-right: 20px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #fff;
-  overflow: hidden;
-
-  img {
-    height: 120px;
-    display: block;
-    margin: 0 auto;
-  }
+.user-name {
+  font-size: 28px;
 }
-
-
