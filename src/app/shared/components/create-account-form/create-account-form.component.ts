@@ -1,30 +1,39 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ValidationCallbackData } from 'devextreme/ui/validation_rules';
 import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
 import notify from 'devextreme/ui/notify';
 import { AuthService } from '../../services';
-
+import { UserRegistrationModel } from './model/form-data';
 
 @Component({
   selector: 'app-create-account-form',
   templateUrl: './create-account-form.component.html',
-  styleUrls: ['./create-account-form.component.scss']
+  styleUrls: ['./create-account-form.component.scss'],
+  standalone: true,
+  imports: [DxFormModule, DxLoadIndicatorModule, NgIf]
 })
 export class CreateAccountFormComponent {
-  loading = false;
-  formData: any = {};
+  [x: string]: any;
+  loading: boolean = false;
+  userRegistrationData: UserRegistrationModel = {
+    email: '',
+    password: '',
+    confirmedPassword: '',
+    displayName: '',
+    phoneNumber: ''
+  };
+  phonePattern: RegExp = /^\(?\+\(?49\)?[ ()]?([- ()]?\d[- ()]?){10}/;
 
   constructor(private authService: AuthService, private router: Router) { }
 
   async onSubmit(e: Event) {
     e.preventDefault();
-    const { email, password } = this.formData;
     this.loading = true;
 
-    const result = await this.authService.createAccount(email, password);
+    const result = await this.authService.createAccount(this.userRegistrationData);
     this.loading = false;
 
     if (result.isOk) {
@@ -35,17 +44,52 @@ export class CreateAccountFormComponent {
   }
 
   confirmPassword = (e: ValidationCallbackData) => {
-    return e.value === this.formData.password;
+    return e.value === this.userRegistrationData.password;
   }
+
+  formFields = [
+    {
+      dataField: 'email',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Email', mode: 'email' },
+      validationRules: [
+        { type: 'required', message: 'Email is required' },
+        { type: 'email', message: 'Email is not valid' }
+      ]
+    },
+    {
+      dataField: 'password',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Password', mode: 'password' },
+      validationRules: [
+        { type: 'required', message: 'Password is required' }
+      ]
+    },
+    {
+      dataField: 'confirmedPassword',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Confirm Password', mode: 'password' },
+      validationRules: [
+        { type: 'required', message: 'Confirm Password is required' },
+        { type: 'custom', message: 'Passwords do not match', validationCallback: this.confirmPassword.bind(this) }
+      ]
+    },
+    {
+      dataField: 'displayName',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Display Name', maxLength: 15 },
+      validationRules: [
+        { type: 'required', message: 'Display Name is required' }
+      ]
+    },
+    {
+      dataField: 'phoneNumber',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Phone Number', mode: 'tel' },
+      validationRules: [
+        { type: 'required', message: 'Phone Number is required' },
+        { type: 'pattern', pattern: this.phonePattern, message: 'The phone must have a correct German phone format' }
+      ]
+    }
+  ];
 }
-@NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    DxFormModule,
-    DxLoadIndicatorModule
-  ],
-  declarations: [ CreateAccountFormComponent ],
-  exports: [ CreateAccountFormComponent ]
-})
-export class CreateAccountFormModule { }

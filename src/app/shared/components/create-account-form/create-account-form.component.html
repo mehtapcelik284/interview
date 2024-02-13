@@ -1,20 +1,15 @@
 <form class="create-account-form" (submit)="onSubmit($event)">
-  <dx-form [formData]="formData" [disabled]="loading">
+  <dx-form [formData]="userRegistrationData" [disabled]="loading">
 
-    <dxi-item dataField="email" editorType="dxTextBox"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Email', mode: 'email' }">
-      <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
-
-    <dxi-item dataField="password" editorType="dxTextBox"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Password', mode: 'password' }">
-      <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
-
-    <dxi-item dataField="confirmedPassword" editorType="dxTextBox"
-      [editorOptions]="{ stylingMode: 'filled', placeholder: 'Confirm Password', mode: 'password' }">
-      <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
+    <ng-container *NgForOf="let field of formFields">
+      <dxi-item [dataField]="field.dataField" [editorType]="field.editorType" [editorOptions]="field.editorOptions">
+        <ng-container *NgForOf="let rule of field.validationRules">
+          <dxi-validation-rule [type]="rule.type" [message]="rule.message"
+            [validationCallback]="rule.validationCallback" [pattern]="rule.pattern"></dxi-validation-rule>
+        </ng-container>
+        <dxo-label [visible]="false"></dxo-label>
+      </dxi-item>
+    </ng-container>
 
     <dxi-item>
       <div class='policy-info'>

@@ -56,7 +56,14 @@
               "src/dx-styles.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "luxon",
+              "jszip",
+              "devexpress-diagram",
+              "devexpress-gantt",
+              "devextreme-quill"
+            ]
           },
           "configurations": {
             "production": {
@@ -129,5 +136,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "bfab37b1-1908-4eb0-be57-21689863a643"
   }
 }

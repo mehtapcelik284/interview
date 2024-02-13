@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { IUser } from 'src/user';
+import { UserRegistrationModel } from '../components/create-account-form/model/form-data';
 
 
 const defaultPath = '/';
@@ -61,10 +62,10 @@ export class AuthService {
     }
   }
 
-  async createAccount(email: string, password: string) {
+  async createAccount(formData: UserRegistrationModel) {
     try {
       // Send request
-      console.log(email, password);
+      console.log(formData);
 
       this.router.navigate(['/create-account']);
       return {
