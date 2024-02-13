@@ -5,7 +5,7 @@
       <dxi-item [dataField]="field.dataField" [editorType]="field.editorType" [editorOptions]="field.editorOptions">
         <ng-container *ngFor="let rule of field.validationRules">
           <dxi-validation-rule [type]="rule.type" [message]="rule.message"
-          [validationCallback]="getValidationCallback(rule)" [pattern]="getPattern(rule)"></dxi-validation-rule>
+            [validationCallback]="getValidationCallback(rule)" [pattern]="getPattern(rule)"></dxi-validation-rule>
         </ng-container>
         <dxo-label [visible]="false"></dxo-label>
       </dxi-item>

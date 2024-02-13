@@ -1,6 +1,6 @@
 import { CommonModule, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, NgModule } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { ValidationCallbackData } from 'devextreme/ui/validation_rules';
 import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
@@ -12,8 +12,6 @@ import { FormFields, UserRegistrationModel, ValidationRule } from './model/form-
   selector: 'app-create-account-form',
   templateUrl: './create-account-form.component.html',
   styleUrls: ['./create-account-form.component.scss'],
-  standalone: true,
-  imports: [DxFormModule, DxLoadIndicatorModule, CommonModule]
 })
 
 export class CreateAccountFormComponent {
@@ -106,3 +104,15 @@ export class CreateAccountFormComponent {
     return item.dataField;
   }
 }
+
+@NgModule({
+  imports: [
+    CommonModule,
+    RouterModule,
+    DxFormModule,
+    DxLoadIndicatorModule
+  ],
+  declarations: [CreateAccountFormComponent],
+  exports: [CreateAccountFormComponent]
+})
+export class CreateAccountFormModule { }

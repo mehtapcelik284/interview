@@ -42,7 +42,7 @@ export class LoginFormComponent {
     DxFormModule,
     DxLoadIndicatorModule
   ],
-  declarations: [ LoginFormComponent ],
-  exports: [ LoginFormComponent ]
+  declarations: [LoginFormComponent],
+  exports: [LoginFormComponent]
 })
 export class LoginFormModule { }
