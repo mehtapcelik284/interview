@@ -35,8 +35,9 @@ const routes: Routes = [
   },
   {
     path: 'create-account',
-    loadChildren: () => import('./shared/components').then(m => m.CreateAccountFormComponent),
-    canActivate: [AuthGuardService]
+    loadComponent: () =>
+    import('./shared/components').then((c) => c.CreateAccountFormComponent),
+    canActivate: [ AuthGuardService ]
   },
   {
     path: 'change-password/:recoveryCode',

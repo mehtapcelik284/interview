@@ -1,11 +1,11 @@
 <form class="create-account-form" (submit)="onSubmit($event)">
   <dx-form [formData]="userRegistrationData" [disabled]="loading">
 
-    <ng-container *NgForOf="let field of formFields">
+    <ng-container *ngFor="let field of formFields">
       <dxi-item [dataField]="field.dataField" [editorType]="field.editorType" [editorOptions]="field.editorOptions">
-        <ng-container *NgForOf="let rule of field.validationRules">
+        <ng-container *ngFor="let rule of field.validationRules">
           <dxi-validation-rule [type]="rule.type" [message]="rule.message"
-            [validationCallback]="rule.validationCallback" [pattern]="rule.pattern"></dxi-validation-rule>
+          [validationCallback]="getValidationCallback(rule)" [pattern]="getPattern(rule)"></dxi-validation-rule>
         </ng-container>
         <dxo-label [visible]="false"></dxo-label>
       </dxi-item>
