@@ -10,12 +10,14 @@ import { DxDataGridModule, DxFormModule } from 'devextreme-angular';
 const routes: Routes = [
   {
     path: 'tasks',
-    component: TasksComponent,
+    loadComponent: () =>
+      import('./pages/tasks/tasks.component').then((m) => m.TasksComponent),
     canActivate: [AuthGuardService]
   },
   {
     path: 'profile',
-    component: ProfileComponent,
+    loadComponent: () =>
+      import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
     canActivate: [AuthGuardService]
   },
   {
@@ -36,8 +38,8 @@ const routes: Routes = [
   {
     path: 'create-account',
     loadComponent: () =>
-    import('./shared/components').then((c) => c.CreateAccountFormComponent),
-    canActivate: [ AuthGuardService ]
+      import('./shared/components').then((m) => m.CreateAccountFormComponent),
+    canActivate: [AuthGuardService]
   },
   {
     path: 'change-password/:recoveryCode',

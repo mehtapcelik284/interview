@@ -1,7 +1,7 @@
 <form class="create-account-form" (submit)="onSubmit($event)">
   <dx-form [formData]="userRegistrationData" [disabled]="loading">
 
-    <ng-container *ngFor="let field of formFields">
+    <ng-container *ngFor="let field of formFields trackBy: trackByFormFields">
       <dxi-item [dataField]="field.dataField" [editorType]="field.editorType" [editorOptions]="field.editorOptions">
         <ng-container *ngFor="let rule of field.validationRules">
           <dxi-validation-rule [type]="rule.type" [message]="rule.message"

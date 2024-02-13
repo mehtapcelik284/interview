@@ -14,3 +14,10 @@ export interface ValidationRule {
   validationCallback?: (e: ValidationCallbackData) => boolean;
   pattern?: string | RegExp;
 }
+
+export interface FormFields {
+  dataField: string,
+  editorType: string,
+  editorOptions: object,
+  validationRules: ValidationRule[]
+}

@@ -6,7 +6,7 @@ import { DxFormModule } from 'devextreme-angular/ui/form';
 import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
 import notify from 'devextreme/ui/notify';
 import { AuthService } from '../../services';
-import { UserRegistrationModel, ValidationRule } from './model/form-data';
+import { FormFields, UserRegistrationModel, ValidationRule } from './model/form-data';
 
 @Component({
   selector: 'app-create-account-form',
@@ -15,6 +15,7 @@ import { UserRegistrationModel, ValidationRule } from './model/form-data';
   standalone: true,
   imports: [DxFormModule, DxLoadIndicatorModule, CommonModule]
 })
+
 export class CreateAccountFormComponent {
   [x: string]: any;
   loading: boolean = false;
@@ -55,54 +56,53 @@ export class CreateAccountFormComponent {
     return rule.pattern || '';
   }
 
-  formFields: Array<{
-    dataField: string,
-    editorType: string,
-    editorOptions: object,
-    validationRules: ValidationRule[]
-  }> = [
-      {
-        dataField: 'email',
-        editorType: 'dxTextBox',
-        editorOptions: { stylingMode: 'filled', placeholder: 'Email', mode: 'email' },
-        validationRules: [
-          { type: 'required', message: 'Email is required' },
-          { type: 'email', message: 'Email is not valid' }
-        ]
-      },
-      {
-        dataField: 'password',
-        editorType: 'dxTextBox',
-        editorOptions: { stylingMode: 'filled', placeholder: 'Password', mode: 'password' },
-        validationRules: [
-          { type: 'required', message: 'Password is required' }
-        ]
-      },
-      {
-        dataField: 'confirmedPassword',
-        editorType: 'dxTextBox',
-        editorOptions: { stylingMode: 'filled', placeholder: 'Confirm Password', mode: 'password' },
-        validationRules: [
-          { type: 'required', message: 'Confirm Password is required' },
-          { type: 'custom', message: 'Passwords do not match', validationCallback: this.confirmPassword.bind(this) }
-        ]
-      },
-      {
-        dataField: 'displayName',
-        editorType: 'dxTextBox',
-        editorOptions: { stylingMode: 'filled', placeholder: 'Display Name', maxLength: 15 },
-        validationRules: [
-          { type: 'required', message: 'Display Name is required' }
-        ]
-      },
-      {
-        dataField: 'phoneNumber',
-        editorType: 'dxTextBox',
-        editorOptions: { stylingMode: 'filled', placeholder: 'Phone Number', mode: 'tel' },
-        validationRules: [
-          { type: 'required', message: 'Phone Number is required' },
-          { type: 'pattern', pattern: this.phonePattern, message: 'The phone must have a correct German phone format' }
-        ]
-      }
-    ];
+  formFields: FormFields[] = [
+    {
+      dataField: 'email',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Email', mode: 'email' },
+      validationRules: [
+        { type: 'required', message: 'Email is required' },
+        { type: 'email', message: 'Email is not valid' }
+      ]
+    },
+    {
+      dataField: 'password',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Password', mode: 'password' },
+      validationRules: [
+        { type: 'required', message: 'Password is required' }
+      ]
+    },
+    {
+      dataField: 'confirmedPassword',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Confirm Password', mode: 'password' },
+      validationRules: [
+        { type: 'required', message: 'Confirm Password is required' },
+        { type: 'custom', message: 'Passwords do not match', validationCallback: this.confirmPassword.bind(this) }
+      ]
+    },
+    {
+      dataField: 'displayName',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Display Name', maxLength: 15 },
+      validationRules: [
+        { type: 'required', message: 'Display Name is required' }
+      ]
+    },
+    {
+      dataField: 'phoneNumber',
+      editorType: 'dxTextBox',
+      editorOptions: { stylingMode: 'filled', placeholder: 'Phone Number', mode: 'tel' },
+      validationRules: [
+        { type: 'required', message: 'Phone Number is required' },
+        { type: 'pattern', pattern: this.phonePattern, message: 'The phone must have a correct German phone format' }
+      ]
+    }
+  ];
+
+  trackByFormFields(index: number, item: FormFields): string {
+    return item.dataField;
+  }
 }

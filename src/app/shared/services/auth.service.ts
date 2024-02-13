@@ -69,7 +69,8 @@ export class AuthService {
 
       this.router.navigate(['/create-account']);
       return {
-        isOk: true
+        isOk: true,
+        message: "Account registration is successfull"
       };
     }
     catch {
